@@ -3,9 +3,33 @@
 A compiled list of links to public failure stories related to Kubernetes.
 Most recent publications on top.
 
+* [Moving to Kubernetes: the Bad and the Ugly - Xing - ContainerDays EU 2019](https://www.youtube.com/watch?v=MoIdU0J0f0E)
+    * involved: nginx Ingress, network interrupts, conntrack, frozen CronJob, PLEG, stuck controllers
+    * impact: lost requests, response time jumps, not ready nodes
+* [Kubernetes Failure Stories, or: How to Crash Your Cluster - Zalando - ContainerDays EU 2019](https://www.youtube.com/watch?v=LpFApeaGv7A)
+    * involved: AWS IAM, Kubelet, `--kube-api-qps`, Skipper-Ingress, AWS, `OOMKill`, CronJob, CoreDNS, CPU throttling
+    * impact: build errors, production outages
+* [Build Errors of Continuous Delivery Platform - Zalando - postmortem 2019](https://github.com/zalando-incubator/kubernetes-on-aws/blob/dev/docs/postmortems/jun-2019-kubelet-qps.md)
+    * involved: AWS IAM, Kubelet, kube2iam, `--kube-api-qps`
+    * impact: build errors
+* [10 Ways to Shoot Yourself in the Foot with Kubernetes, #9 Will Surprise You - Datadog - KubeCon Barcelona 2019](https://www.youtube.com/watch?v=QKI-JRs2RIE)
+    * involved: CoreDNS, `ndots:5`, IPVS conntrack, `imagePullPolicy: Always`, DaemonSet, NAT instances, `latest` tag, API server `OOMKill`, kube2iam, cluster-autoscaler, PodPriority, audit logs, `spec.replicas`, AWS ASG rebalance, CronJob, Pod toleration, zombies, `readinessProbe.exec`, cgroup freeze, kubectl
+    * impact: unknown, API server outage, pending pods, slow deployments
+* [How Spotify Accidentally Deleted All its Kube Clusters with No User Impact - Spotify - KubeCon Barcelona 2019](https://www.youtube.com/watch?v=ix0Tw8uinWs)
+    * involved: GKE, cluster deletion, browser tabs, Terraform, global state file, git PRs, GCP permissions
+    * impact: no impact on end users
+* [Kubernetes Failure Stories - Zalando - KubeCon Barcelona 2019](https://www.youtube.com/watch?v=6sDTB4eV4F8)
+    * involved: Skipper-Ingress, AWS, `OOMKill`, high latency, CronJob, CoreDNS, `ndots:5`, etcd, CPU throttling
+    * impact: multiple production outages
+* [Oh Sh\*t! The Config Changed! - Pusher - KubeCon Barcelona 2019](https://www.youtube.com/watch?v=8P7-C44Gjj8)
+    * involved: AWS, nginx, ConfigMap change
+    * impact: production outage
 * [Misunderstanding the behaviour of one templating line - Skyscanner - blog post 2019](https://medium.com/@SkyscannerEng/misunderstanding-the-behaviour-of-one-templating-line-and-the-pain-it-caused-our-k8s-clusters-a420f30a99f1)
     * involved: HAProxy-Ingress, Service VIPs, Golang templating
     * impact: Significantly increased latency, 5XXs thrown from some services
+* [How to kill the Algolia dashboard during Black Friday or How not to use Kubernetes - Algolia - Algolia Search Party 2019](https://www.youtube.com/watch?v=Fjyg7cxRZQs&list=PLuHdbqhRgWHJg9eOFCl5dgLvVjd_DFz8O&index=3&t=0s)
+    * involved: GKE, Jobs, overload
+    * impact: high latency, timeouts
 * [All pods scheduled to same failing host - Moonlight - postmortem 2019](https://updates.moonlightwork.com/outage-post-mortem-87370)
     * involved: Google Kubernetes Engine, scheduler, anti-affinity rules
     * impact: major production outage, 100% traffic loss
@@ -30,12 +54,9 @@ Most recent publications on top.
 * [On Infrastructure at Scale: A Cascading Failure of Distributed Systems - Target - Medium post January 2019](https://medium.com/@daniel.p.woods/on-infrastructure-at-scale-a-cascading-failure-of-distributed-systems-7cff2a3cd2df)
     * involved: on-premise, Kafka, large cluster, Consul, Docker daemon, high CPU usage
     * impact: development environment outage
-    
- * [How NOT to do Kubernetes - Sr.SRE Medya Ghazizadeh - Google - Cloud Native Meetup Sep 2018](https://www.youtube.com/watch?v=V0DVkrHf08k) 
+ * [How NOT to do Kubernetes - Sr.SRE Medya Ghazizadeh - Google - Cloud Native Meetup Sep 2018](https://www.youtube.com/watch?v=V0DVkrHf08k)
     * involved: public container registery, ingress wild card, image size, replica count, 12factor
     * impact: security, stablity of clusters.
-
- 
 * [Running Kubernetes in Production: A Million Ways to Crash Your Cluster - Zalando - DevOpsCon Munich 2018](https://www.slideshare.net/try_except_/running-kubernetes-in-production-a-million-ways-to-crash-your-cluster-devopscon-munich-2018)
     * involved: AWS, Ingress, CronJob, etcd, flannel, Docker, CPU throttling
     * impact: production outages
@@ -66,6 +87,9 @@ Most recent publications on top.
 * [101 Ways to "Break and Recover" Kubernetes Cluster - Oath/Yahoo - KubeCon Europe 2018](https://www.youtube.com/watch?v=likHm-KHGWQ)
     * involved: on-premise, namespace deletion, domain name collision, `NotReady` nodes, etcd empty dir, TLS certificate refresh, DNS issues, OOM
     * impact: unknown cluster outages
+* [Experiences with running PostgreSQL on Kubernetes - Gravitational - blog post 2018](https://gravitational.com/blog/running-postgresql-on-kubernetes/)
+    * involved: PostgreSQL, streaming replication
+    * impact: data loss
 * [101 Ways to Crash Your Cluster - Nordstrom - KubeCon North America 2017](https://www.youtube.com/watch?v=xZO9nx6GBu0)
     * involved: AWS, `NotReady` nodes, OOM, eviction thresholds, ELB dynamic IPs, kubelet, cluster autoscaler, etcd split
     * impact: full production cluster outage, other outages
@@ -100,7 +124,7 @@ For more information, [see the blog post](https://srcco.de/posts/kubernetes-fail
 
 # Contributing
 
-Please help the community and **share a link to your failure story by opening a Pull Request!**
+Please help the community and **[share a link to your failure story by opening a Pull Request!](https://github.com/hjacobs/kubernetes-failure-stories/edit/master/README.md)**
 Failure stories can be anything like blog posts, conference/meetup talks, incident postmortems, tweetstorms, ...
 
 I would also be glad to hear about your failure stories on Twitter: my handle is [@try_except_](https://twitter.com/try_except_)
